@@ -18,7 +18,7 @@ void putString(unsigned char* data){
 }
 
 void putNewline() {
-    putChar("\n");
+    putString("\n");
 }
 
 void putDecT(int32_t data) {
