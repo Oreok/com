@@ -6,6 +6,8 @@
 #include <util/delay.h>
 
 
+void sendOutput(char text[], uint32_t value);
+
 void putChar(unsigned char data);
 
 void putString(unsigned char* data);

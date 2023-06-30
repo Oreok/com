@@ -17,20 +17,29 @@ void putString(unsigned char* data){
     }
 }
 
+void putBin_char(uint8_t c) {
+    for (int i = 7; i >= 0; --i){
+        putChar( (c & (1 << i)) ? '1' : '0' );
+    }
+    // new line with \r because either picocom or wsl are stupid
+}
+
 void putNewline() {
     putString("\n");
 }
 
-void putDecT(int32_t data) {
-    char buffer[12]; 
-    sprintf(buffer, "%ld", data); 
-    
-    for (int i = 0; buffer[i] != '\0'; i++) {
-        putChar(buffer[i]);
+void sendOutput(char text[], int32_t value) {
+
+    putString(text);
+    if(value < 0) {
+        putString("-");
+        value =-value;
     }
+    putDec(value);
+    putString("\n");
 }
 
-void putDec(uint32_t value) {
+void putDec(int32_t value) {
     uint32_t absValue = (value < 0) ? -value : value;  
 
     if (value < 0)
